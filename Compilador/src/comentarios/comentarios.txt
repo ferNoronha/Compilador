@@ -1,0 +1,286 @@
+    if(separador.contains(""+arrayLinha[i].charAt(j))
+                        || (arrayLinha[i].charAt(j)==':' && arrayLinha[i].charAt(j+1)=='=')
+                        || (arrayLinha[i].charAt(j)==':' && arrayLinha[i].charAt(j+1)==':')
+                        || (arrayLinha[i].charAt(j)=='|' && arrayLinha[i].charAt(j+1)=='|')
+                        || (arrayLinha[i].charAt(j)=='"')
+                        || (arrayLinha[i].charAt(j)=='|' && arrayLinha[i].charAt(j+1)=='*')
+                        || (arrayLinha[i].charAt(j)=='*' && arrayLinha[i].charAt(j+1)=='|')
+                        || (arrayLinha[i].charAt(j)=='>' && arrayLinha[i].charAt(j+1)=='=')
+                        || (arrayLinha[i].charAt(j)=='<' && arrayLinha[i].charAt(j+1)=='=')
+                        || (arrayLinha[i].charAt(j)=='!' && arrayLinha[i].charAt(j+1)=='!')
+                        || (arrayLinha[i].charAt(j)==' ')
+                        || (arrayLinha[i].charAt(j)=='\n')
+                        || (arrayLinha[i].charAt(j)=='\t'))
+
+ else{
+            if(teste.equals(","))
+            {
+                pt = new ProgramToken();
+                pt.setToken("TK_VIRG");
+                programToken.add(pt);
+            }
+            else
+            {
+                if(teste.equals("(")){
+                    
+                }
+                else{
+                    if(teste.equals(")")){
+                        
+                    }
+                    else{
+                        if(teste.equals("{")){
+                            
+                        }
+                        else
+                        {
+                            if(teste.equals("}")){
+                                
+                            }
+                            else{
+                                if(teste.equals("[")){
+                                    
+                                }
+                                else{
+                                    if(teste.equals("]")){
+                                        
+                                    }
+                                    else{
+                                        if(teste.equals("@")){
+                                            
+                                        }
+                                        else{
+                                            if(teste.equals("$")){
+                                                
+                                            }
+                                            else{
+                                                if(teste.equals(".")){
+                                                    
+                                                }
+                                                else{
+                                                    System.out.println("Nao sei que poha ta acontecendo aqui dois");
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+
+--------------------------------------------------------------------------------------------------------------------------------------
+ /*private void comandotipo(){
+        
+    }
+    private void CMD_DECL(){
+        
+        String tk = programToken.get(contador).getToken();
+        if(tk.equals("TK_INT") || tk.equals("TK_DOUBLE") || tk.equals("TK_STRING") || tk.equals("TK_CHAR") || tk.equals("TK_BOOL"))
+        {
+            contador++;
+            tk = programToken.get(contador).getToken();
+            if(tk.equals("TK_ID"))
+            {
+                contador++;
+                tk = programToken.get(contador).getToken();
+                if(tk.equals("TK_VRG")){
+                    contador++;
+                    
+                }
+            }
+            else
+            {
+                //ERRO ID
+            }
+        }
+       
+        
+    }
+    
+    
+    private void comandoatrib(){
+       String tk = programToken.get(contador).getToken();
+        if(tk.equals("TK_NUM") || tk.equals("TK_ID")){
+            contador++;
+            tk = programToken.get(contador).getToken();
+            if(tk.equals("TK_OPER")){
+                 contador++;
+                 comandoatrib();
+            }
+            
+        }
+        
+    }
+    private void CMD_ATRIB(){
+        ProgramToken pt;
+       //  pt = programToken.get(contador);
+        String tk = programToken.get(contador).getToken();
+        switch(tk){
+            case "TK_ID":
+                contador++;
+         //        pt = programToken.get(contador);
+                tk = programToken.get(contador).getToken();
+                if(tk.equals("TK_ATRIB")){
+                    contador++;
+           //          pt = programToken.get(contador);
+                     tk = programToken.get(contador).getToken();
+                    if(tk.equals("TK_NUM") || tk.equals("TK_ID") || tk.equals("TK_TRUE") || tk.equals("TK_FALSE")){
+                        contador++;
+//                         pt = programToken.get(contador);
+                        tk = programToken.get(contador).getToken();
+                        if(tk.equals("TK_OPER")){
+                            contador++;
+                            comandoatrib();
+                            //contador++;
+   //                          pt = programToken.get(contador);
+                            tk = programToken.get(contador).getToken();
+                            if(!tk.equals("TK_FINALLINHA")){
+                                //ERRO
+                  //               ListaErros le = new ListaErros("Erro Sintatico CHAVE",pt.getLinha());
+                    //            listaerros.add(le);
+                                System.out.println("ERRO NO FINALLINHA 2");
+                            }
+                        }else{
+                            if(!tk.equals("TK_FINALLINHA")){
+                                    //ERRO
+                          //           ListaErros le = new ListaErros("Erro Sintatico CHAVE",pt.getLinha());
+                            //        listaerros.add(le);
+                                    System.out.println("ERRO NO FINALLINHA");
+                            }
+                        }
+                    }
+                }
+                break;
+        }
+    }
+    
+    private void CMD_IF(){
+        
+    }
+    
+    private void CMD_FOR(){
+    }
+    
+    private void CMD_WHILE(){
+        
+    }
+    
+    private void comandos(){
+        
+        contador++;
+        String tk = programToken.get(contador).getToken();
+        
+        switch(tk){
+            case "TK_INT":
+                contador++;
+                CMD_DECL();
+                break;
+            case "TK_NUM":
+               // CMD_ATRIB();
+                break;
+            case "TK_ID":
+                CMD_ATRIB();
+                break;
+            case "TK_DOUBLE":
+                CMD_DECL();
+                break;
+            case "TK_CHAR":
+                CMD_DECL();
+                break;
+            case "TK_STRING":
+                CMD_DECL();
+                break;
+            case "TK_BOOL":
+                CMD_DECL();
+                break;
+            case "TK_IF":
+                CMD_IF();
+                break;
+            case "TK_FOR":
+                CMD_FOR();
+                break;
+            case "TK_WHILE":
+                CMD_WHILE();
+                break;
+                
+        }
+        
+    }
+    
+    
+    public void sintatico(){
+      
+      ProgramToken pt;
+      
+      try{
+      pt = programToken.get(contador);
+      }catch(Exception ex1){
+         ListaErros le = new ListaErros("Erro Sintatico nao existe nada",0);
+         listaerros.add(le); 
+         return;
+      }
+      if(pt!=null){
+          
+      String tk = programToken.get(contador).getToken();
+        if(programToken.get(contador).getToken().equals("TK_MAIN"))
+        {
+            contador++;
+            pt = programToken.get(contador);
+            tk = programToken.get(contador).getToken();
+            if(programToken.get(contador).getToken().equals("TK_ACHAVE")){
+                comandos();
+                pt = programToken.get(contador);
+                tk = programToken.get(contador).getToken();
+                if(tk.equals("TK_FINALLINHA")){
+                    contador++;
+                    try{
+                        pt = programToken.get(contador);
+                        tk = programToken.get(contador).getToken();
+                        /*if(!tk.equals("TK_FCHAVE"))
+                            System.out.println("ERRO MAIN");*/
+ /*   }catch(Exception ex)
+                    {
+                        ListaErros le = new ListaErros("Erro Sintatico CHAVE",pt.getLinha());
+                       listaerros.add(le);
+                        System.out.println("ERRO MAIN");
+                    }
+                    
+                }
+                else{
+                    if(!tk.equals("TK_FCHAVE")){
+                      ListaErros le = new ListaErros("Erro Sintatico CHAVE",pt.getLinha());
+                       listaerros.add(le);
+                        System.out.println("ERRO MAIN");
+                    }
+                }
+            }
+            
+            if(!tk.equals("TK_FCHAVE"))
+            {
+                ListaErros le = new ListaErros("Erro Sintatico CHAVE ",pt.getLinha());
+                listaerros.add(le);
+                System.out.println("ERRO MAIN");
+                //ERRO
+            }
+           
+            
+        }else{
+           
+            ListaErros le = new ListaErros("Erro Sintatico MAIN",pt.getLinha());
+            listaerros.add(le);
+            System.out.println("ERRO MAIN");
+            //ERRO SINTATICO MAIN
+           /* contador++;
+            if(programToken.get(contador).getToken().equals("TK_APAR"))
+                comandos();
+            if(!programToken.get(contador).getToken().equals("TK_FPAR"))
+            {
+                //ERRO
+            }*/
+ /*   }
+      }
+    }*/
